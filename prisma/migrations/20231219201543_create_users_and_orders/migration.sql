@@ -14,8 +14,7 @@ CREATE TABLE "users" (
 CREATE TABLE "orders" (
     "id" TEXT NOT NULL,
     "customer" TEXT NOT NULL,
-    "status" BOOLEAN NOT NULL DEFAULT false,
-    "draft_status" BOOLEAN NOT NULL DEFAULT true,
+    "status" TEXT NOT NULL DEFAULT 'Aberto',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "user_id" TEXT NOT NULL,

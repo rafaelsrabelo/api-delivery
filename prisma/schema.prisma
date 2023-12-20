@@ -26,14 +26,13 @@ model Order {
   id String @id @default(uuid())
   customer String
   address String
-  status Boolean @default(false)
-  draft_status Boolean @default(true)
+  status String
 
-  created_at DateTime @default(now())
-  updated_at DateTime? @default(now())
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime? @default(now()) @map("updated_at")
 
   user User @relation(fields: [user_id], references: [id])
-  user_id String
+  user_id String @map("user_id")
 
   @@map("orders")
 }
