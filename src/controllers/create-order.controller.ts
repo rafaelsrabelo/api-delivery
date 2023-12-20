@@ -18,7 +18,6 @@ type CreateOrderBodySchema = z.infer<typeof createOrderBodySchema>
 @Controller('/api/v1/orders')
 @UseGuards(JwtAuthGuard)
 export class CreateOrderController {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(private prisma: PrismaService) {}
 
   @Post()
@@ -27,12 +26,10 @@ export class CreateOrderController {
     @CurrentUser() user: UserPayload,
   ) {
     const { customer, address, status } = body
-    const userId = user.sub
     await this.prisma.order.create({
       data: {
         customer,
         address,
-        user_id: userId,
         status,
       },
     })

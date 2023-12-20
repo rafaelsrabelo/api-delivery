@@ -31,8 +31,8 @@ model Order {
   created_at DateTime @default(now()) @map("created_at")
   updated_at DateTime? @default(now()) @map("updated_at")
 
-  user User @relation(fields: [user_id], references: [id])
-  user_id String @map("user_id")
+  user User? @relation(fields: [user_id], references: [id])
+  user_id String? @map("user_id")
 
   @@map("orders")
 }
