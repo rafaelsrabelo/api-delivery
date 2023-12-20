@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  HttpCode,
   Post,
   UnauthorizedException,
   UsePipes,
@@ -17,7 +18,7 @@ const authenticateBodySchema = z.object({
 })
 
 type AuthenicateBodySchema = z.infer<typeof authenticateBodySchema>
-@Controller('/api/v1/auth')
+@Controller('/api/v1/auth/signin')
 export class AuthenticateController {
   constructor(
     private jwt: JwtService,
@@ -25,7 +26,7 @@ export class AuthenticateController {
   ) {}
 
   @Post()
-  // HttpCode(200)
+  @HttpCode(200)
   @UsePipes(new ZodValidationPipe(authenticateBodySchema))
   async handle(@Body() body: AuthenicateBodySchema) {
     const { email, password } = body
