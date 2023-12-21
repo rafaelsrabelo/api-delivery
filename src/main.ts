@@ -17,9 +17,16 @@ async function bootstrap() {
     )
     .setVersion('1.0')
     .build()
+
+  config.servers = [
+    { url: `http://localhost:${port}`, description: 'Localhost' },
+  ]
+
   const document = SwaggerModule.createDocument(app, config)
 
   SwaggerModule.setup('api', app, document)
+
   await app.listen(port)
 }
+
 bootstrap()

@@ -7,6 +7,7 @@ import { CreateAccounController } from './controllers/create-account.controller'
 import { AuthenticateController } from './controllers/authenticate-controller'
 import { CreateOrderController } from './controllers/create-order.controller'
 import { FetchRecentOrdersController } from './controllers/fetch-recent-orders.controller'
+import { UpdateOrderController } from './controllers/update-order.controller'
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { FetchRecentOrdersController } from './controllers/fetch-recent-orders.c
   ],
   controllers: [
     CreateAccounController,
+    UpdateOrderController,
     AuthenticateController,
     CreateOrderController,
     FetchRecentOrdersController,
