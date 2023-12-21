@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module'
 import { CreateAccounController } from './controllers/create-account.controller'
 import { AuthenticateController } from './controllers/authenticate-controller'
 import { CreateOrderController } from './controllers/create-order.controller'
+import { FetchRecentOrdersController } from './controllers/fetch-recent-orders.controller'
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CreateOrderController } from './controllers/create-order.controller'
     CreateAccounController,
     AuthenticateController,
     CreateOrderController,
+    FetchRecentOrdersController,
   ],
   providers: [PrismaService],
 })
