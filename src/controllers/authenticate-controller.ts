@@ -68,6 +68,7 @@ export class AuthenticateController {
     return {
       acess_token: accessToken,
       name: user.name,
+      email: user.email,
     }
   }
 }
