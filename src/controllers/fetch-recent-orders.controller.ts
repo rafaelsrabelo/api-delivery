@@ -74,10 +74,27 @@ export class FetchRecentOrdersController {
         created_at: 'desc',
       },
       where,
+      include: { user: true },
     })
 
+    const mappedOrders = orders.map((order) => ({
+      id: order.id,
+      customer: order.customer,
+      address: order.address,
+      status: order.status,
+      created_at: order.created_at,
+      updated_at: order.updated_at,
+      user: order.user
+        ? {
+            id: order.user.id,
+            name: order.user.name,
+            email: order.user.email,
+          }
+        : null,
+    }))
+
     return {
-      data: orders,
+      data: mappedOrders,
       meta: {
         total: totalCount,
         page: +page,
