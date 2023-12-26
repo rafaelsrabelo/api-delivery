@@ -64,6 +64,9 @@ export class FetchRecentOrdersController {
       }
     }
 
+    const totalCount = await this.prisma.order.count({ where })
+    const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
+
     const orders = await this.prisma.order.findMany({
       take: ITEMS_PER_PAGE,
       skip: (page - 1) * ITEMS_PER_PAGE,
@@ -73,6 +76,14 @@ export class FetchRecentOrdersController {
       where,
     })
 
-    return { orders }
+    return {
+      data: orders,
+      meta: {
+        total: totalCount,
+        page: +page,
+        limit: ITEMS_PER_PAGE,
+        totalPages,
+      },
+    }
   }
 }
