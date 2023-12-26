@@ -27,7 +27,7 @@ export class CreateOrderController {
     description: 'Endpoint para criar pedido.',
   })
   @ApiQuery({
-    name: 'custommer',
+    name: 'customer',
     required: true,
     description: 'Nome do cliente',
     type: String,

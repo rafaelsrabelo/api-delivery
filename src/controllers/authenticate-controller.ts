@@ -64,7 +64,13 @@ export class AuthenticateController {
       throw new UnauthorizedException('Usuário não credenciado!')
     }
 
-    const accessToken = this.jwt.sign({ sub: user.id })
+    const expirationTimeInSeconds = 3600
+
+    const accessToken = this.jwt.sign(
+      { sub: user.id },
+      { expiresIn: expirationTimeInSeconds },
+    )
+
     return {
       acess_token: accessToken,
       name: user.name,

@@ -1,5 +1,5 @@
 import { Controller, UseGuards, Body, Put, Param } from '@nestjs/common'
-import { ApiOperation, ApiTags } from '@nestjs/swagger'
+import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger'
 import { CurrentUser } from 'src/auth/current-user-decorator'
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard'
 import { UserPayload } from 'src/auth/jwt.strategy'
@@ -30,6 +30,12 @@ export class UpdateOrderController {
   @ApiOperation({
     summary: 'Atualizar status e associar usuário à ordem',
     description: 'Endpoint para atualizar o status e associar usuário à ordem.',
+  })
+  @ApiQuery({
+    name: 'status',
+    required: true,
+    description: 'Status do pedido',
+    type: String,
   })
   async handle(
     @Param('orderId') orderId: string,
@@ -63,7 +69,7 @@ export class UpdateOrderController {
       where: { id: orderId },
       data: {
         status,
-        user: { connect: { id: userId } }, // Associar usuário à ordem
+        user: { connect: { id: userId } },
       },
     })
 
