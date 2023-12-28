@@ -31,5 +31,7 @@ $ cd api-delliv
 $ pnpm install
 # Rodar banco de dados
 $ docker-compose up -d
+# Execute as migrações do Prisma
+$ pnpm run prisma:migrate
 # Execute a aplicação em modo de desenvolvimento
 $ pnpm run start:dev
