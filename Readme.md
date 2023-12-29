@@ -23,22 +23,29 @@ O Delliv API é um backend desenvolvido para oferecer funcionalidades avançadas
 ### Como rodar a aplicação
 
 ```bash
-# Clone este repositório
-$ git clone https://github.com/rafaelsrabelo/api-delliv
-# Acesse a pasta do projeto
-$ cd api-delliv
-# Instale as dependências
-$ pnpm install
-# Rodar banco de dados com docker
-$ docker-compose up -d
-# gerar o schema
-$ pnpm run prisma:generate
-# gerar as migrações
-$ pnpm run prisma:migrate dev
-#  subir a aplicação
-$ pnpm run start:dev
-#  subir banco de dados com prisma
-$ pnpm prisma studio
+# Clone o repositório
+git clone https://github.com/rafaelsrabelo/api-delliv
 
-#  Configurações .env
-$ lembrar de transformar o arquivo .env.example em .env
+# Acesse a pasta do projeto
+cd api-delliv
+
+# Instale as dependências
+pnpm install
+
+# Inicie o banco de dados com Docker
+docker-compose up -d
+
+# Gere o schema com Prisma
+pnpm run prisma:generate
+
+# Execute as migrações do Prisma
+pnpm run prisma:migrate dev
+
+# Inicie a aplicação
+pnpm run start:dev
+
+# Acesse o banco de dados com Prisma Studio
+pnpm prisma studio
+
+# Configurações do arquivo .env
+# Transforme o arquivo .env.example em .env e ajuste conforme necessário
