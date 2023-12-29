@@ -31,11 +31,12 @@ $ cd api-delliv
 $ pnpm install
 # Rodar banco de dados
 $ docker-compose up -d
-# Execute as migrações do Prisma
-$ pnpm run prisma:migrate
 # Gerar os arquivos TypeScript do Prisma
 $ pnpm run prisma:generate
 #  a aplicação em modo de desenvolvimento
 $ pnpm run start:dev
 #  subir banco de dados com prisma
 $ pnpm prisma studio
+
+#  Configurações .env
+$ lembrar de transformar o arquivo .env.example em .env
