@@ -37,3 +37,5 @@ $ pnpm run prisma:migrate
 $ pnpm run prisma:generate
 #  a aplicação em modo de desenvolvimento
 $ pnpm run start:dev
+#  subir banco de dados com prisma
+$ pnpm prisma studio
