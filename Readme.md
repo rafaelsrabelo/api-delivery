@@ -29,11 +29,13 @@ $ git clone https://github.com/rafaelsrabelo/api-delliv
 $ cd api-delliv
 # Instale as dependências
 $ pnpm install
-# Rodar banco de dados
+# Rodar banco de dados com docker
 $ docker-compose up -d
-# Gerar os arquivos TypeScript do Prisma
+# gerar o schema
 $ pnpm run prisma:generate
-#  a aplicação em modo de desenvolvimento
+# gerar as migrações
+$ pnpm run prisma:migrate dev
+#  subir a aplicação
 $ pnpm run start:dev
 #  subir banco de dados com prisma
 $ pnpm prisma studio
