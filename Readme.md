@@ -33,5 +33,7 @@ $ pnpm install
 $ docker-compose up -d
 # Execute as migrações do Prisma
 $ pnpm run prisma:migrate
-# Execute a aplicação em modo de desenvolvimento
+# Gerar os arquivos TypeScript do Prisma
+$ pnpm run prisma:generate
+#  a aplicação em modo de desenvolvimento
 $ pnpm run start:dev
