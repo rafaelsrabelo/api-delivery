@@ -3,6 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { AppModule } from './app.module'
 import { ConfigService } from '@nestjs/config'
 import { Env } from './env'
+import { SeedService } from './controllers/seed-controller'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {})
@@ -27,6 +28,8 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document)
   app.enableCors()
 
+  const seedService = app.get(SeedService)
+  await seedService.seedOrders()
   await app.listen(port)
 }
 

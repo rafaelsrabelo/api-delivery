@@ -8,6 +8,7 @@ import { AuthenticateController } from './controllers/authenticate-controller'
 import { CreateOrderController } from './controllers/create-order.controller'
 import { FetchRecentOrdersController } from './controllers/fetch-recent-orders.controller'
 import { UpdateOrderController } from './controllers/update-order.controller'
+import { SeedService } from './controllers/seed-controller'
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UpdateOrderController } from './controllers/update-order.controller'
     AuthenticateController,
     CreateOrderController,
     FetchRecentOrdersController,
+    SeedService,
   ],
   providers: [PrismaService],
 })

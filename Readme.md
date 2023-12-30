@@ -41,6 +41,9 @@ pnpm run prisma:generate
 # Execute as migrações do Prisma
 pnpm run prisma:migrate dev
 
+# Popular a tabela de Pedidos
+pnpm run seed
+
 # Inicie a aplicação
 pnpm run start:dev
 
@@ -48,4 +51,4 @@ pnpm run start:dev
 pnpm prisma studio
 
 # Configurações do arquivo .env
-# Transforme o arquivo .env.example em .env e ajuste conforme necessário
+# Transforme o arquivo .env.example em .env e ajuste conforme necessárioco
