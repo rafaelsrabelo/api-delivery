@@ -1,5 +1,12 @@
 import { Controller, UseGuards, Body, Put, Param } from '@nestjs/common'
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger'
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiProperty,
+  ApiTags,
+} from '@nestjs/swagger'
 import { CurrentUser } from 'src/auth/current-user-decorator'
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard'
 import { UserPayload } from 'src/auth/jwt.strategy'
@@ -20,9 +27,18 @@ const updateOrderBodySchema = z.object({
 const bodyValidationPipe = new ZodValidationPipe(updateOrderBodySchema)
 type UpdateOrderBodySchema = z.infer<typeof updateOrderBodySchema>
 
+class UpdateOrderApiBodyModel {
+  @ApiProperty({
+    type: String,
+    description: 'Corpo da solicitação para atualizar o status do pedido',
+  })
+  status?: string
+}
+
 @ApiTags('orders')
 @Controller('/api/v1/orders')
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class UpdateOrderController {
   constructor(private prisma: PrismaService) {}
 
@@ -31,12 +47,12 @@ export class UpdateOrderController {
     summary: 'Atualizar status e associar usuário à ordem',
     description: 'Endpoint para atualizar o status e associar usuário à ordem.',
   })
-  @ApiQuery({
-    name: 'status',
-    required: true,
-    description: 'Status do pedido',
+  @ApiParam({
+    name: 'orderId',
+    description: 'ID do pedido a ser atualizado',
     type: String,
   })
+  @ApiBody({ type: UpdateOrderApiBodyModel })
   async handle(
     @Param('orderId') orderId: string,
     @Body(bodyValidationPipe) body: UpdateOrderBodySchema,

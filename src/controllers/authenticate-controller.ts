@@ -7,7 +7,7 @@ import {
   UsePipes,
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger'
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { compare } from 'bcryptjs'
 import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe'
 import { PrismaService } from 'src/prisma/prisma.service'
@@ -34,17 +34,15 @@ export class AuthenticateController {
     summary: 'Autenticação',
     description: 'Endpoint para autenticar e gerar token.',
   })
-  @ApiQuery({
-    name: 'password',
-    required: true,
-    description: 'Senha do usuário',
-    type: String,
-  })
-  @ApiQuery({
-    name: 'email',
-    required: true,
-    description: 'Email do usuário',
-    type: String,
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        email: { type: 'string' },
+        password: { type: 'string' },
+      },
+    },
+    description: 'Objeto de autenticação',
   })
   async handle(@Body() body: AuthenicateBodySchema) {
     const { email, password } = body

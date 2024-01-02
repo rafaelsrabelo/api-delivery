@@ -1,5 +1,5 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common'
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard'
 import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe'
 import { PrismaService } from 'src/prisma/prisma.service'
@@ -31,6 +31,7 @@ const ITEMS_PER_PAGE = 10
 @ApiTags('orders')
 @Controller('/api/v1/orders')
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 export class FetchRecentOrdersController {
   constructor(private prisma: PrismaService) {}
 

@@ -17,6 +17,11 @@ async function bootstrap() {
       'API para aplicativo de rastreamento de entregas que permita aos usuários autenticados visualizar uma lista de pedidos, atualizar o status de cada pedido e fornecer recursos de autenticação e segurança.',
     )
     .setVersion('1.0')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    })
     .build()
 
   config.servers = [
