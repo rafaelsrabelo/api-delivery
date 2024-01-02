@@ -10,7 +10,7 @@ import { PrismaService } from 'src/prisma/prisma.service'
 import { hash } from 'bcryptjs'
 import { z } from 'zod'
 import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe'
-import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger'
+import { ApiBody, ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger'
 
 const createAccountBodySchema = z.object({
   name: z.string(),
@@ -31,23 +31,16 @@ export class CreateAccounController {
     summary: 'Criar conta',
     description: 'Endpoint para criar conta.',
   })
-  @ApiQuery({
-    name: 'password',
-    required: true,
-    description: 'Senha do usuário',
-    type: String,
-  })
-  @ApiQuery({
-    name: 'email',
-    required: true,
-    description: 'Email do usuário',
-    type: String,
-  })
-  @ApiQuery({
-    name: 'name',
-    required: true,
-    description: 'Nome do usuário',
-    type: String,
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        name: { type: 'string' },
+        email: { type: 'string' },
+        password: { type: 'string' },
+      },
+    },
+    description: 'Objeto de autenticação',
   })
   async handle(@Body() body: CreateAccoungBodySchema) {
     const { name, email, password } = body
