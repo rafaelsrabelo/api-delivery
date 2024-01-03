@@ -47,26 +47,5 @@ git clone https://github.com/rafaelsrabelo/api-delliv
 # Acesse a pasta do projeto
 cd api-delliv
 
-# Instale as dependências
-pnpm install
-
-# Inicie o banco de dados com Docker
+# Inicie os containers Docker com os serviços de backend
 docker-compose up -d
-
-# Gere o schema com Prisma
-pnpm run prisma:generate
-
-# Execute as migrações do Prisma
-pnpm run prisma:migrate dev
-
-# Popular a tabela de Pedidos
-pnpm run seed
-
-# Inicie a aplicação
-pnpm run start:dev
-
-# Acesse o banco de dados com Prisma Studio
-pnpm prisma studio
-
-# Configurações do arquivo .env
-# Transforme o arquivo .env.example em .env e ajuste conforme necessárioco

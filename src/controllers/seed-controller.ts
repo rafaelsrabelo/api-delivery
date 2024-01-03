@@ -26,16 +26,18 @@ export class SeedService {
 
   async seedOrders() {
     const numberOfOrders = 20
+    const count = await this.prisma.order.count()
+    if (count === 0) {
+      const ordersData: CreateOrderBodySchema[] = Array.from(
+        { length: numberOfOrders },
+        () => this.generateFakeOrder(),
+      )
 
-    const ordersData: CreateOrderBodySchema[] = Array.from(
-      { length: numberOfOrders },
-      () => this.generateFakeOrder(),
-    )
-
-    for (const order of ordersData) {
-      await this.prisma.order.create({
-        data: order,
-      })
+      for (const order of ordersData) {
+        await this.prisma.order.create({
+          data: order,
+        })
+      }
     }
   }
 }
