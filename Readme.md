@@ -44,6 +44,9 @@ Certifique-se de ajustar as configurações de ambiente conforme necessário par
 # Clone o repositório
 git clone https://github.com/rafaelsrabelo/api-delliv
 
+# Criar as variaveis de ambiente
+Troque o example.env por .env
+
 # Acesse a pasta do projeto
 cd api-delliv
 
