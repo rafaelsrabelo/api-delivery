@@ -1,6 +1,6 @@
 import { Controller, Injectable } from '@nestjs/common'
 import { faker } from '@faker-js/faker'
-import { PrismaService } from 'src/prisma/prisma.service'
+import { PrismaService } from 'src/service/prisma.service'
 import { z } from 'zod'
 
 const createOrderBodySchema = z.object({
@@ -26,18 +26,24 @@ export class SeedService {
 
   async seedOrders() {
     const numberOfOrders = 20
-    const count = await this.prisma.order.count()
-    if (count === 0) {
-      const ordersData: CreateOrderBodySchema[] = Array.from(
-        { length: numberOfOrders },
-        () => this.generateFakeOrder(),
-      )
 
-      for (const order of ordersData) {
-        await this.prisma.order.create({
-          data: order,
-        })
+    try {
+      const count = await this.prisma.order.count()
+
+      if (count === 0) {
+        const ordersData: CreateOrderBodySchema[] = Array.from(
+          { length: numberOfOrders },
+          () => this.generateFakeOrder(),
+        )
+
+        for (const order of ordersData) {
+          await this.prisma.order.create({
+            data: order,
+          })
+        }
       }
+    } catch (error) {
+      console.log(error)
     }
   }
 }

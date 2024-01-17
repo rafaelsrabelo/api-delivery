@@ -10,7 +10,7 @@ import { CurrentUser } from 'src/auth/current-user-decorator'
 import { JwtAuthGuard } from 'src/auth/jwt-auth-guard'
 import { UserPayload } from 'src/auth/jwt.strategy'
 import { ZodValidationPipe } from 'src/pipes/zod-validation-pipe'
-import { PrismaService } from 'src/prisma/prisma.service'
+import { PrismaService } from 'src/service/prisma.service'
 import { z, ZodObject, ZodString } from 'zod'
 
 const createOrderBodySchema: ZodObject<{
