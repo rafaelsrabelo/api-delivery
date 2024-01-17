@@ -33,7 +33,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document)
   app.enableCors()
 
-  // const seedService = app.get(SeedService)
+  const seedService = app.get(SeedService)
   // await seedService.seedOrders()
   await app.listen(port || 3000)
 }
