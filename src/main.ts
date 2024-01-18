@@ -34,7 +34,7 @@ async function bootstrap() {
   app.enableCors()
 
   const seedService = app.get(SeedService)
-  // await seedService.seedOrders()
+  await seedService.seedOrders()
   await app.listen(port || 3000)
 }
 
